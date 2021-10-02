@@ -307,6 +307,11 @@ public class main extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardlayout, "screenBook");
+                try {
+                    BookTable(null);
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
             }
         });
         ADDCATEGORYButton.addActionListener(new ActionListener() {

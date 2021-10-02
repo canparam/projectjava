@@ -1,5 +1,6 @@
 package views.popup;
 
+import dao.BookDao;
 import dao.LoanDao;
 import model.Gender;
 import model.Loan;
@@ -8,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.sql.SQLException;
 
 public class editLoan extends JDialog{
@@ -21,6 +24,9 @@ public class editLoan extends JDialog{
     private LoanDao loanDao(){
         return new LoanDao();
     }
+    private BookDao bookDao(){
+        return new BookDao();
+    }
     public editLoan(Loan loan){
         this.loan = loan;
         this.setContentPane(main);
@@ -31,6 +37,7 @@ public class editLoan extends JDialog{
         this.setLocationRelativeTo(null);
         this.pack();
         intData();
+        saveButton.setEnabled(false);
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,7 +49,7 @@ public class editLoan extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 Gender gender = (Gender) cbStatus.getSelectedItem();
                 try {
-                    boolean i = loanDao().update(gender.getId(),loan.getId());
+                    boolean i = loanDao().returnBook(loan.getUuid(),gender.getId());
                     System.out.println(i);
                     if (i){
                         JOptionPane.showMessageDialog(null,"Thành công");
@@ -53,6 +60,18 @@ public class editLoan extends JDialog{
                     exception.printStackTrace();
                 }
 
+            }
+        });
+
+        cbStatus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Gender gender = (Gender) cbStatus.getSelectedItem();
+                if (gender.getId() == loan.getStatus()){
+                    saveButton.setEnabled(false);
+                }else {
+                    saveButton.setEnabled(true);
+                }
             }
         });
     }

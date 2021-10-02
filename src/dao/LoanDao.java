@@ -19,6 +19,7 @@ public class LoanDao implements IGenericDao<Loan> {
     private static String UPDATE = "UPDATE loan SET status = ? WHERE int = ?";
     private static String by_Code = "SELECT * from vLoan WHERE maHS = ?";
     private static String by_Issua = "SELECT * from vLoan WHERE int = 1";
+    private static String returnBook = "exec returnBook ?,?";
 
     @Override
     public List<Loan> getAll() throws SQLException {
@@ -92,6 +93,17 @@ public class LoanDao implements IGenericDao<Loan> {
         preparedStatement.setInt(2, id);
         int i = preparedStatement.executeUpdate();
         System.out.println(i);
+        if (i == 1){
+            return true;
+        }
+        return false;
+    }
+    public boolean returnBook(String uuid,int status) throws SQLException {
+        Connection c = DaoFactory.sqlServer().openConnect();
+        PreparedStatement preparedStatement = c.prepareStatement(returnBook);
+        preparedStatement.setString(1, uuid);
+        preparedStatement.setInt(2, status);
+        int i = preparedStatement.executeUpdate();
         if (i == 1){
             return true;
         }
