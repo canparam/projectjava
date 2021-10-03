@@ -59,7 +59,7 @@ public class tableImportBooks extends JDialog {
                 for (Book book : books){
                     i++;
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(40);
                         bookDao().insert(book);
                         process.setValue(i);
                         process.update(process.getGraphics());
