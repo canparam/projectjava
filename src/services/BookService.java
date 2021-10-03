@@ -52,7 +52,7 @@ public class BookService {
                 container.add("%" + value + "%");
                 break;
             case 3:
-                sql = "WHERE bo_STT AND cate_name like ? ";
+                sql = "WHERE bo_STT = 1 AND cate_name like ? ";
                 container.add("%" + value + "%");
                 break;
             default:
@@ -105,6 +105,8 @@ public class BookService {
         for (String listDatum : listData) {
 //            String replace = listDatum.replace("|"," ");
             String[] object = listDatum.split("\\|");
+            if (object.length < 5 || object.length > 5) return null;
+
             Book book = new Book();
             book.setTitle(object[0]);
             book.setAuthor(object[1]);

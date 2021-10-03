@@ -655,8 +655,8 @@ public class main extends JFrame {
                     try {
                         StringBuilder data = bookService().readFile(file);
                         ArrayList<Book> books = bookService().readData(data);
-                        if (books == null){
-                            JOptionPane.showMessageDialog(null,"Không có dữ liệu nào để import");
+                        if (books == null) {
+                            JOptionPane.showMessageDialog(null, "Không có dữ liệu nào để import hoặc sai định dạng file");
                             return;
                         }
                         JDialog jd = new tableImportBooks(books);
@@ -785,7 +785,7 @@ public class main extends JFrame {
     }
 
     private void CategoryTable(ArrayList<Category> categories) throws SQLException {
-        String column[] = {"STT", "Name","Cate ID"};
+        String column[] = {"STT", "Name", "Cate ID"};
         ArrayList<Category> cate = new ArrayList<>();
         DefaultTableModel tablecate = new DefaultTableModel(column, 0);
         if (categories != null) {
@@ -799,7 +799,7 @@ public class main extends JFrame {
             Category category = new Category();
             category.setName(cate.get(i).getName());
             category.setId(cate.get(i).getId());
-            Object[] data = {stt, category,category.getId()};
+            Object[] data = {stt, category, category.getId()};
             tablecate.addRow(data);
         }
         tableCate.setModel(tablecate);
