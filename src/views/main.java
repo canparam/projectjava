@@ -714,6 +714,7 @@ public class main extends JFrame {
         Cfilter.addItem(new Filter(3, labels.getString("filterByName")));
         Cfilter.addItem(new Filter(4, labels.getString("filterByAddress")));
         bookInt();
+        bashboardButton.setText(labels.getString("bash"));
     }
 
     private void Modal() throws SQLException {
