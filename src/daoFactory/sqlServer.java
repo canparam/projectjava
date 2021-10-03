@@ -4,6 +4,7 @@ import dao.StudentDao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class sqlServer extends DaoFactory{
     private static String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=project;";
@@ -17,11 +18,10 @@ public class sqlServer extends DaoFactory{
             Connection connection = DriverManager.getConnection(url , user , password);
             return connection;
         }catch (Exception e){
-            e.printStackTrace();
+           // e.printStackTrace();
         }
         return null;
     }
-
 //    @Override
 //    public StudentDao getStudentDao() {
 //        return new StudentDao();

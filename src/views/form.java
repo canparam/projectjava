@@ -1,6 +1,7 @@
 package views;
 
 import controller.FormController;
+import daoFactory.DaoFactory;
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
 import model.Admin;
@@ -17,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Vector;
 
@@ -34,6 +36,7 @@ public class form extends JFrame {
     private JCheckBox remember;
     private JLabel noti;
     private JButton signUpButton;
+    private JTextField statusFiler;
 
     private AdminService adminService() {
         return new AdminService();
@@ -41,6 +44,7 @@ public class form extends JFrame {
 
     public form() throws InterruptedException {
         super("Phần mềm quản lý thư viện");
+        statusFiler.setEnabled(false);
         this.setContentPane(form);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setMinimumSize(new Dimension(350, 500));
@@ -49,6 +53,13 @@ public class form extends JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         this.intSetting();
+        if (checkStatus() == false){
+            btnLogin.setEnabled(false);
+            signUpButton.setEnabled(false);
+            statusFiler.setText("Mất kết nối");
+        }else{
+            statusFiler.setText("Đã kết nối");
+        }
         btnLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -177,5 +188,7 @@ public class form extends JFrame {
         jDialog.setModal(true);
         jDialog.setVisible(true);
     }
-
+    private boolean checkStatus(){
+        return DaoFactory.sqlServer().isDbConnected();
+    }
 }

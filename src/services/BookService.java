@@ -72,7 +72,6 @@ public class BookService {
         for (Book book : books) {
             map.put(book, Collections.frequency(books, book.getBookID()));
         }
-        System.out.println(map);
         return books;
     }
 
@@ -105,7 +104,6 @@ public class BookService {
 
         for (String listDatum : listData) {
 //            String replace = listDatum.replace("|"," ");
-            System.out.println(listDatum);
             String[] object = listDatum.split("\\|");
             Book book = new Book();
             book.setTitle(object[0]);

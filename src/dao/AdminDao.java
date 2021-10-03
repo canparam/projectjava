@@ -69,7 +69,6 @@ public class AdminDao implements IGenericDao<Admin> {
         Connection c = DaoFactory.sqlServer().openConnect();
         PreparedStatement preparedStatement = c.prepareStatement(FIND_BY_ID);
         preparedStatement.setInt(1, id);
-        System.out.println(preparedStatement);
         ResultSet resultSet = preparedStatement.executeQuery();
         Admin admin = new Admin();
         while (resultSet.next()) {

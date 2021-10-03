@@ -295,8 +295,6 @@ public class main extends JFrame {
                 Filter filter = (Filter) Cfilter.getSelectedItem();
                 try {
                     ArrayList<Student> students = MemberController.getInstance().search(search, filter);
-                    System.out.println(search);
-                    System.out.println(students.toString());
                     createTable(students);
                 } catch (SQLException exception) {
                     exception.printStackTrace();
@@ -442,11 +440,9 @@ public class main extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String value = bookSearch.getText();
                 Filter filter = (Filter) selectBook.getSelectedItem();
-                System.out.println(filter.toString());
                 try {
                     ArrayList<Book> books = bookService().search(value, filter);
                     BookTable(books);
-                    System.out.println(books.toString());
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }
@@ -789,7 +785,7 @@ public class main extends JFrame {
     }
 
     private void CategoryTable(ArrayList<Category> categories) throws SQLException {
-        String column[] = {"STT", "Name"};
+        String column[] = {"STT", "Name","Cate ID"};
         ArrayList<Category> cate = new ArrayList<>();
         DefaultTableModel tablecate = new DefaultTableModel(column, 0);
         if (categories != null) {
@@ -803,7 +799,7 @@ public class main extends JFrame {
             Category category = new Category();
             category.setName(cate.get(i).getName());
             category.setId(cate.get(i).getId());
-            Object[] data = {stt, category};
+            Object[] data = {stt, category,category.getId()};
             tablecate.addRow(data);
         }
         tableCate.setModel(tablecate);

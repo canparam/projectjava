@@ -83,7 +83,7 @@ public class tableImportBooks extends JDialog {
         Icon close = IconFontSwing.buildIcon(FontAwesome.WINDOW_CLOSE, 15, Color.decode("#ffb115"));
         btnSave.setIcon(save);
         đóngButton.setIcon(close);
-        String column[] = {"STT", "Tên sách","Mã sách", "Tác giả", "Danh mục", "Số lượng"};
+        String column[] = {"STT", "Tên sách","Mã sách", "Tác giả", "ID Danh Mục", "Số lượng"};
         DefaultTableModel tableModel = new DefaultTableModel(column, 0);
         tableImport.setModel(tableModel);
         AtomicInteger count = new AtomicInteger(1);

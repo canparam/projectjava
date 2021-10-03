@@ -62,7 +62,6 @@ public class FormController {
         Admin ad = dao().getOne(UserSession.getInstance().getId());
         if (ad.getPassword().equals(oldpass)) {
             ad.setPassword(newPass);
-            System.out.println(ad.toString());
             dao().update(ad, ad.getId());
             return true;
         }

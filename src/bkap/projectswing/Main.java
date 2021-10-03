@@ -16,8 +16,6 @@ public class Main {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
         } catch(Exception ignored){}
-
-
         JFrame myapp = new form();
 
         myapp.setVisible(true);
