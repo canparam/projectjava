@@ -25,6 +25,7 @@ import services.UserSession;
 import views.popup.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -105,7 +106,7 @@ public class main extends JFrame {
     private JTextField issuaBookQuantity;
     private JDateChooser issuDate;
     private JButton saveIssuaBtn;
-    private JButton làmMớiButton;
+    private JButton refreshButton;
     private JTextField issuaBookSearch;
     private JPanel issuaInfo;
     private JLabel isssueERROR;
@@ -129,6 +130,30 @@ public class main extends JFrame {
     private JTable tableTopNotReturn;
     private JPanel chartPanel;
     private JButton IMPORTMUILITIButton;
+    private JPanel tableTwo;
+    private JPanel tableThree;
+    private JLabel listMember;
+    private JLabel listBook;
+    private JPanel lendBook;
+    private JLabel studentCode;
+    private JLabel studentName;
+    private JLabel studCode;
+    private JLabel studentClass;
+    private JPanel bookInfo;
+    private JLabel bookName;
+    private JLabel bookCode;
+    private JLabel author;
+    private JLabel quantity;
+    private JLabel borrowDate;
+    private JLabel returnDay;
+    private JPanel allList;
+    private JLabel allLists;
+    private JLabel allHistory;
+    private JLabel stuCode;
+    private JLabel stuName;
+    private JLabel total;
+    private JLabel book;
+    private JLabel sCode;
     private JButton EXPORTDATAButton;
     private JTable dashTableOne;
     private JTable tableIssua;
@@ -567,7 +592,7 @@ public class main extends JFrame {
 
             }
         });
-        làmMớiButton.addActionListener(new ActionListener() {
+        refreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 issuaStudent.setText("");
@@ -715,6 +740,62 @@ public class main extends JFrame {
         Cfilter.addItem(new Filter(4, labels.getString("filterByAddress")));
         bookInt();
         bashboardButton.setText(labels.getString("bash"));
+        membersButton.setText(labels.getString("member"));
+        booksButton.setText(labels.getString("book"));
+        issuedBtn.setText(labels.getString("issued"));
+        returnedButton.setText(labels.getString("returned"));
+        notReturnedButton.setText(labels.getString("search"));
+        Border border = BorderFactory.createTitledBorder(labels.getString("tableOne"));
+        Border border2 = BorderFactory.createTitledBorder(labels.getString("tableTwo"));
+        Border border3 = BorderFactory.createTitledBorder(labels.getString("tableThree"));
+        Border border4 = BorderFactory.createTitledBorder(labels.getString("lendBook"));
+        Border border6 = BorderFactory.createTitledBorder(labels.getString("studentInfo"));
+        Border border7 = BorderFactory.createTitledBorder(labels.getString("studentName"));
+        Border border9 = BorderFactory.createTitledBorder(labels.getString("studentClass"));
+        Border border10 = BorderFactory.createTitledBorder(labels.getString("bookInfo"));
+
+        tableOne.setBorder(border);
+        tableTwo.setBorder(border2);
+        tableThree.setBorder(border3);
+        lendBook.setBorder(border4);
+        issuaInfo.setBorder(border6);
+        studentName.setBorder(border7);
+        studentClass.setBorder(border9);
+        bookInfo.setBorder(border10);
+
+        listMember.setText(labels.getString("listMember"));
+        addNewButton.setText(labels.getString("addNewButton"));
+        IMPORTMUILITIButton.setText(labels.getString("IMPORTMUILITIButton"));
+        DELETEButton.setText(labels.getString("deleteButton"));
+        bookBtnSearch.setText(labels.getString("searchButton"));
+        searchButton.setText(labels.getString("searchButton"));
+        sBtn.setText(labels.getString("searchButton"));
+        checkButton.setText(labels.getString("checkButton"));
+        addBookButton.setText(labels.getString("addNewButton"));
+        EDITButton.setText(labels.getString("editButton"));
+        editListBtn.setText(labels.getString("editButton"));
+        listBook.setText(labels.getString("listBook"));
+        refreshButton.setText(labels.getString("refreshButton"));
+        saveIssuaBtn.setText(labels.getString("saveIssuaBtn"));
+        bookName.setText(labels.getString("bookName"));
+        bookCode.setText(labels.getString("bookCode"));
+        author.setText(labels.getString("author"));
+        quantity.setText(labels.getString("quantity"));
+        borrowDate.setText(labels.getString("borrowDate"));
+        returnDay.setText(labels.getString("returnDate"));
+
+        allLists.setText(labels.getString("allLists"));
+        allHistory.setText(labels.getString("allHistory"));
+        studentCode.setText(labels.getString("studentCode"));
+        studentName.setText(labels.getString("studentName"));
+        total.setText(labels.getString("total"));
+        book.setText(labels.getString("book"));
+        stuCode.setText(labels.getString("studentCode"));
+        sCode.setText(labels.getString("studentCode"));
+        stuName.setText(labels.getString("studentName"));
+
+
+
     }
 
     private void Modal() throws SQLException {
