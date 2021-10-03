@@ -2,12 +2,14 @@ package views;
 
 import controller.FormController;
 import daoFactory.DaoFactory;
+import daoFactory.loadConfig;
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
 import model.Admin;
 import model.Language;
 import services.AdminService;
 import services.UserSession;
+import views.popup.config;
 import views.popup.sigup;
 
 import javax.swing.*;
@@ -37,6 +39,7 @@ public class form extends JFrame {
     private JLabel noti;
     private JButton signUpButton;
     private JTextField statusFiler;
+    private JButton configSQL;
 
     private AdminService adminService() {
         return new AdminService();
@@ -105,6 +108,15 @@ public class form extends JFrame {
                 sigupModal();
             }
         });
+        configSQL.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JDialog jd = new config();
+                jd.setTitle("Cấu hình DATABASE");
+                jd.setModal(true);
+                jd.setVisible(true);
+            }
+        });
     }
 
     private void intSetting() throws InterruptedException {
@@ -115,6 +127,8 @@ public class form extends JFrame {
         Icon reg = IconFontSwing.buildIcon(FontAwesome.SIGN_IN, 15);
         Icon rem = IconFontSwing.buildIcon(FontAwesome.CHECK_CIRCLE, 15);
         Icon signu = IconFontSwing.buildIcon(FontAwesome.USER_PLUS, 25, Color.decode("#ffb115"));
+        Icon config = IconFontSwing.buildIcon(FontAwesome.DATABASE, 15);
+        configSQL.setIcon(config);
         iconUser.setIcon(icon);
         iconPass.setIcon(iconn);
         iconLanguage.setIcon(lang);
@@ -135,7 +149,7 @@ public class form extends JFrame {
             username.setText(adminService().UPDATE().getUsername());
             password.setText(adminService().UPDATE().getPassword());
         }
-
+        loadConfig.getInstance().loadConfig();
     }
 
     private String validateForm() {

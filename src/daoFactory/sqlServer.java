@@ -1,29 +1,31 @@
 package daoFactory;
 
-import dao.StudentDao;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
-public class sqlServer extends DaoFactory{
-    private static String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=project;";
+public class sqlServer extends DaoFactory {
+
+    private static String url = "jdbc:sqlserver://" + loadConfig.getInstance().HOST + ":" + loadConfig.getInstance().PORT + ";" + "databaseName=" + loadConfig.getInstance().DATATABSE + ";";
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static String user = "cannv";
-    private static String password = "123123123";
+    private static String user = loadConfig.getInstance().USERNAME;
+    private static String password = loadConfig.getInstance().PASSWORD;
+
     @Override
     public Connection openConnect() {
+        loadConfig.getInstance().loadConfig();
         try {
             Class.forName(driver).newInstance();
-            Connection connection = DriverManager.getConnection(url , user , password);
+            Connection connection = DriverManager.getConnection(url, user, password);
             return connection;
-        }catch (Exception e){
-           // e.printStackTrace();
+        } catch (Exception e) {
+            // e.printStackTrace();
         }
         return null;
     }
-//    @Override
+
+    //    @Override
 //    public StudentDao getStudentDao() {
 //        return new StudentDao();
 //    }
+
 }
