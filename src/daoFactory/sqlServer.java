@@ -12,7 +12,6 @@ public class sqlServer extends DaoFactory {
 
     @Override
     public Connection openConnect() {
-        loadConfig.getInstance().loadConfig();
         try {
             Class.forName(driver).newInstance();
             Connection connection = DriverManager.getConnection(url, user, password);

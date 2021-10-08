@@ -36,7 +36,6 @@ public class config extends JDialog {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.pack();
-        loadConfig.getInstance().loadConfig();
         intLoad();
         btnSave.addActionListener(new ActionListener() {
             @Override

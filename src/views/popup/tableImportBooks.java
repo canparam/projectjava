@@ -21,6 +21,7 @@ public class tableImportBooks extends JDialog {
     private JButton btnSave;
     private JButton đóngButton;
     private JProgressBar process;
+    private JTextArea textArea1;
     private ArrayList<Book> books;
 
     private BookService bookService() {
@@ -70,9 +71,11 @@ public class tableImportBooks extends JDialog {
                         }
 
                     } catch (InterruptedException | SQLException interruptedException) {
-                        interruptedException.printStackTrace();
+                        String error = "Danh muc " + book.getBookID() + " khong ton tai \n";
+                        textArea1.append(error);
                     }
                 }
+                textArea1.append("Done!");
 
             }
         });

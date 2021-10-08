@@ -341,20 +341,21 @@ public class main extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String name = JOptionPane.showInputDialog("Category Name");
-                Category category = new Category(0, name);
-                boolean stt = false;
-                try {
-                    stt = BookController.getInstance().store(category);
-                    if (stt) {
-                        JOptionPane.showMessageDialog(null, "Thêm mới thành công");
-                        CategoryTable(null);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Tên đã tồn tại");
+                if (name != null){
+                    Category category = new Category(0, name);
+                    boolean stt = false;
+                    try {
+                        stt = BookController.getInstance().store(category);
+                        if (stt) {
+                            JOptionPane.showMessageDialog(null, "Thêm mới thành công");
+                            CategoryTable(null);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Tên đã tồn tại");
+                        }
+                    } catch (SQLException exception) {
+                        exception.printStackTrace();
                     }
-                } catch (SQLException exception) {
-                    exception.printStackTrace();
                 }
-
             }
         });
         categoryEdit.addActionListener(new ActionListener() {
@@ -1053,10 +1054,10 @@ public class main extends JFrame {
         plot.setDataset(1, createDataset());
         plot.setRenderer(1, baRenderer);
         // Set Axis
-        plot.setDomainAxis(new CategoryAxis("Danh mục"));
-        plot.setRangeAxis(new NumberAxis("Số liệu"));
+        plot.setDomainAxis(new CategoryAxis(labels.getString("category")));
+        plot.setRangeAxis(new NumberAxis(labels.getString("Data")));
         JFreeChart chart = new JFreeChart(plot);
-        chart.setTitle("BIỂU ĐỒ TỔNG QUÁT");
+        chart.setTitle(labels.getString("chart"));
         ChartPanel panel = new ChartPanel(chart);
         chartPanel.setLayout(new java.awt.BorderLayout());
         chartPanel.add(panel, BorderLayout.CENTER);
@@ -1067,27 +1068,23 @@ public class main extends JFrame {
 
         int totalBook = bookDao().getAll().size();
         // First Series
-        String series1 = "Tổng số sách";
+        String series1 = labels.getString("totalBook");
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.addValue(totalBook, series1, "");
         // Second Series
         int totalIssua = loanDao().Status().size();
-        String series2 = "Đã trả";
+        String series2 = labels.getString("returneds");
         dataset.addValue(totalIssua, series2, "");
-        String series3 = "Chưa trả";
+        String series3 = labels.getString("notReturn");
         int totalNotRuturn = loanDao().getNotReturn().size();
         dataset.addValue(totalNotRuturn, series3, "");
         int totalStudent = studentDao().getAll().size();
-        String series4 = "Tổng học sinh";
+        String series4 = labels.getString("totalStudent");
         dataset.addValue(totalStudent, series4, "");
         return dataset;
     }
 
     private int validateIssua() {
-        System.out.println(bookx);
-        System.out.println(studentx);
-        System.out.println(startx);
-        System.out.println(endx);
         if (bookx == null || studentx == null || startx == null || endx == null) {
             return 0;
         } else {

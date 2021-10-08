@@ -14,7 +14,7 @@ public class loadConfig {
     public String DATATABSE;
     public String USERNAME;
     public String PASSWORD;
-    public void loadConfig(){
+    private loadConfig(){
         Properties properties = new Properties();
         InputStream inputStream = null;
         try {
